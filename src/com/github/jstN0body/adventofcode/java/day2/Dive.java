@@ -1,4 +1,4 @@
-package com.github.jstN0body.adventofcode.day2;
+package com.github.jstN0body.adventofcode.java.day2;
 
 public class Dive {
     public static void main(String[] args) {

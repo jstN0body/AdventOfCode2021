@@ -1,4 +1,4 @@
-package com.github.jstN0body.adventofcode.day1;
+package com.github.jstN0body.adventofcode.java.day1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ public class SonarSweep {
         for (String s : args) {
             data.add(Integer.parseInt(s));
         }
-
 
         int increases = 0;
         for (int i = 1; i < data.size(); i++) {

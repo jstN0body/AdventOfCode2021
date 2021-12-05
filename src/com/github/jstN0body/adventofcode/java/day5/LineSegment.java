@@ -1,4 +1,4 @@
-package com.github.jstN0body.adventofcode.day5;
+package com.github.jstN0body.adventofcode.java.day5;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -12,10 +12,6 @@ public class LineSegment {
     public LineSegment(Point start, Point finish) {
         startPoint = start;
         endPoint = finish;
-    }
-
-    public boolean isStraight() {
-        return startPoint.x == endPoint.x || startPoint.y == endPoint.y;
     }
 
     public List<Point> pointsAlongLine() {
