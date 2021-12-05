@@ -1,4 +1,4 @@
-package com.github.jstN0body.adventofcode.day1;
+package com.github.jstN0body.adventofcode.java.day1;
 
 import java.util.ArrayList;
 import java.util.List;

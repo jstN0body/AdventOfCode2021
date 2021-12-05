@@ -1,4 +1,4 @@
-package com.github.jstN0body.adventofcode.day5;
+package com.github.jstN0body.adventofcode.java.day5;
 
 import java.awt.*;
 import java.util.ArrayList;
