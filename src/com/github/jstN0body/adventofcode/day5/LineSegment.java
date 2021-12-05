@@ -34,6 +34,17 @@ public class LineSegment {
             for (int i = 0; i <= (endingPoint.x - startingPoint.x); i++) {
                 points.add(new Point(startingPoint.x + i, startingPoint.y));
             }
+        } else {
+            Point startingPoint = startPoint.x < endPoint.x ? startPoint : endPoint;
+            Point endingPoint = startPoint.x < endPoint.x ? endPoint : startPoint;
+
+            for (int i = 0; i <= (endingPoint.x - startingPoint.x); i++) {
+                if (endingPoint.y > startingPoint.y) {
+                    points.add(new Point(startingPoint.x + i, startingPoint.y + i));
+                } else {
+                    points.add(new Point(startingPoint.x + i, startingPoint.y - i));
+                }
+            }
         }
 
         return points;
