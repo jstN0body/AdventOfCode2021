@@ -10,7 +10,6 @@ public class SonarSweep {
             data.add(Integer.parseInt(s));
         }
 
-
         int increases = 0;
         for (int i = 1; i < data.size(); i++) {
             if (data.get(i) > data.get(i-1)) increases++;
