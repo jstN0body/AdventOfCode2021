@@ -22,7 +22,6 @@ public class SyntaxScoring {
                 } else if (targetChar.get(index) == c) {
                     targetChar.remove(index);
                 } else {
-                    System.out.format("Expected %c, but found %c instead%n", targetChar.get(index), c);
                     total += missingBracketScore(c);
                     break;
                 }
