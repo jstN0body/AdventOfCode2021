@@ -2,6 +2,7 @@ package com.github.jstN0body.adventofcode.java.day9;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SmokeBasin {
     public static void main(String[] args) {
@@ -49,17 +50,15 @@ public class SmokeBasin {
             basinSizes.add(findBasinSize(point, heightMap));
         }
 
+        basinSizes = basinSizes.stream().sorted().collect(Collectors.toList());
         System.out.println(basinSizes);
-        int total = 1;
-        for (int i : basinSizes) {
-            total *= i;
-        }
+        int size = basinSizes.size();
+        int total = basinSizes.get(size - 1) * basinSizes.get(size - 2) * basinSizes.get(size - 3);
         System.out.println(total);
     }
 
     public static int findBasinSize(Point lowPoint, int[][] heightMap) {
         int size = 1;
-        List<Point> allPoints = new ArrayList<>();
         List<Point> points = new ArrayList<>();
         points.add(lowPoint);
 
@@ -67,19 +66,21 @@ public class SmokeBasin {
             List<Point> temp = new ArrayList<>();
             for (Point point : points) {
                 for (Point p : getNeighboringPoints(point, heightMap)) {
-                    if (!temp.contains(p) && p.height == height) {
+                    boolean contains = false;
+                    for (Point p1 : temp) {
+                        if (p.equals(p1)) {
+                            contains = true;
+                            break;
+                        }
+                    }
+                    if (!contains && p.height == height) {
                         temp.add(p);
                     }
                 }
             }
             size += temp.size();
             points = temp;
-            allPoints.addAll(temp);
         }
-        for (Point p : allPoints) {
-            System.out.format("%d ", p.height);
-        }
-        System.out.print("\n");
         return size;
     }
 
@@ -113,5 +114,9 @@ class Point {
         this.x = x;
         this.y = y;
         this.height = height;
+    }
+
+    public boolean equals(Point p) {
+        return x == p.x && y == p.y;
     }
 }
