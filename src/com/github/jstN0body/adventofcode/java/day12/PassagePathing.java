@@ -23,7 +23,6 @@ public class PassagePathing {
 
         Cave start = Cave.ALL_CAVES.get("start");
         Cave end =  Cave.ALL_CAVES.get("end");
-        Pathfinder p = new Pathfinder(start, end);
-        System.out.print("\n" + p.allPaths.size());
+        new Pathfinder(start, end);
     }
 }

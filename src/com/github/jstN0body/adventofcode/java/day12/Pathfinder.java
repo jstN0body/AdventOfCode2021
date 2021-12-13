@@ -14,18 +14,27 @@ public class Pathfinder {
         this.start = start;
         this.finish = finish;
 
+        clearVisited();
+        part1(start);
+        System.out.println(allPaths.size());
+        allPaths.clear();
+        currentPath.clear();
+        clearVisited();
+        part2(start, false);
+        System.out.println(allPaths.size());
+    }
+
+    public void clearVisited() {
         for (Cave c : Cave.ALL_CAVES.values()) {
             visited.put(c, false);
         }
-
-        Part1(start);
     }
 
     public List<LinkedList<Cave>> allPaths = new LinkedList<>();
     LinkedList<Cave> currentPath = new LinkedList<>();
 
-    public void Part1(Cave location) {
-        if (visited.getOrDefault(location, false)) return;
+    public void part1(Cave location) {
+        if (visited.get(location)) return;
 
         if (location.type == CaveType.SMALL) {
             visited.put(location, true);
@@ -33,40 +42,34 @@ public class Pathfinder {
         currentPath.add(location);
 
         if (location.equals(finish)) {
-            printPath(currentPath);
             allPaths.add(currentPath);
             visited.put(location, false);
             currentPath.removeLast();
             return;
         }
         for (Cave c : location.destinations) {
-            Part1(c);
+            part1(c);
         }
         currentPath.removeLast();
         visited.put(location, false);
     }
 
-    public void Part2(Cave location, boolean extraVisit) {
-        if (visited.get(location)) { // why doesn't this work :(
+    public void part2(Cave location, boolean extraVisit) {
+        if (currentPath.contains(location) && location.type == CaveType.SMALL) {
             if (!extraVisit && !location.equals(start)) {
                 extraVisit = true;
-            } else {
-                return;
-            }
+            } else return;
         }
-
-        if (location.type == CaveType.SMALL) visited.put(location, true);
         currentPath.add(location);
 
         if (location.equals(finish)) {
-            printPath(currentPath);
             allPaths.add(currentPath);
             visited.put(location, false);
             currentPath.removeLast();
             return;
         }
         for (Cave c : location.destinations) {
-            Part2(c, extraVisit);
+            part2(c, extraVisit);
         }
         currentPath.removeLast();
         visited.put(location, false);
