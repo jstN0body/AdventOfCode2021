@@ -67,8 +67,8 @@ class Point {
     public final ArrayList<Point> neighbors = new ArrayList<>();
 
     public Point(int x, int y, int val) {
-        this. x = x;
-        this. y = y;
+        this.x = x;
+        this.y = y;
         this.value = val;
     }
 
